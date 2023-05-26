@@ -1,9 +1,21 @@
-import { GetStaticProps } from "next";
+// import { GetStaticProps } from "next";
 import Head from "next/head";
 // import Link from "next/link";
 // import SinglePost from "../components/Post/SinglePost";
 // import Tag from "../components/Tag/Tag";
 // import { getAllTags, getPostsForTopPage } from "../lib/notionAPI";
+import { getAllPosts } from "../lib/notionAPI";
+
+export const getStaticProps = async () => {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      allPosts,
+    },
+    revalidate: 60 * 60 * 24,
+  };
+};
 
 // export const getStaticProps: GetStaticProps = async () => {
 //   const fourPosts = await getPostsForTopPage(4);
@@ -16,9 +28,11 @@ import Head from "next/head";
 //     },
 //     revalidate: 10,
 //   };
+
 // };
 
-export default function Home() {
+export default function Home( allPosts ) {
+  console.log(allPosts)
   return (
     <div className="container h-full w-full mx-auto">
       <Head>
