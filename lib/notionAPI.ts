@@ -17,6 +17,7 @@ export const getAllPosts = async () => {
   return allPosts.map((post) => {
     return getPageMetaData(post);
   });
+  
 };
 
 const getPageMetaData = (post) => {
