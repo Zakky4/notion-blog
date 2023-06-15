@@ -31,6 +31,8 @@ const getPageMetaData = (post) => {
     return allTags;
   };
 
+  console.log(post.properties.Name.title[0].plain_text);
+
   return {
     id: post.id,
     title: post.properties.Name.title[0].plain_text,
@@ -38,7 +40,7 @@ const getPageMetaData = (post) => {
     date: post.properties.Date.date.start,
     slug: post.properties.Slug.rich_text[0].plain_text,
     tags: getTags(post.properties.Tags.multi_select),
-  }
+  };
 };
 
 export const getSinglePost = async (slug) => {
@@ -59,7 +61,7 @@ export const getSinglePost = async (slug) => {
   // console.log(metadata);
   const mdBlocks = await n2m.pageToMarkdown(page.id);
   const mdString = n2m.toMarkdownString(mdBlocks);
-  console.log(mdString);
+  // console.log(mdString);
 
   return {
     metadata,
