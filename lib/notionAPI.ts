@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import exp from "constants";
 import { NotionToMarkdown } from "notion-to-md";
 
 const notion = new Client({
@@ -66,4 +67,11 @@ export const getSinglePost = async (slug) => {
     markdown: mdString,
   };
 
+};
+
+// Topページ表示用の記事を取得
+export const getAllPostsForToppage = async (pageSize: number) => {
+  const allPosts = await getAllPosts();
+  const fourPosts = allPosts.slice(0, pageSize);
+  return fourPosts;
 };
